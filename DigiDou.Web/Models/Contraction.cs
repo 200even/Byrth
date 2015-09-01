@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -13,6 +14,6 @@ namespace DigiDou.Web.Models
 
         public TimeSpan Length => EndTime - StartTime;
 
-
+        public DbSet<Contraction> Contractions { get; set; }
     }
 }
