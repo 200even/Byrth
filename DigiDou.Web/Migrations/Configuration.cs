@@ -1,5 +1,6 @@
 namespace DigiDou.Web.Migrations
 {
+    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -27,5 +28,7 @@ namespace DigiDou.Web.Migrations
             //    );
             //
         }
+
+
     }
 }

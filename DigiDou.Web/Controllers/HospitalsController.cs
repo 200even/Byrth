@@ -2,118 +2,104 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Diagnostics;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
-using System.Web.Mvc;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Description;
 using DigiDou.Web.Models;
 
 namespace DigiDou.Web.Controllers
 {
-    public class HospitalsController : Controller
+    [RoutePrefix("hospitals")]
+    public class HospitalsController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Hospitals
-        public ActionResult Index()
+        // GET: api/Hospitals
+        public IQueryable<Hospital> GetHospitals()
         {
-            return View(db.Hospitals.ToList());
+            return db.Hospitals;
         }
 
-        // GET: Hospitals/Details/5
-        public ActionResult Details(int? id)
+        // GET: api/Hospitals/5
+        [ResponseType(typeof(Hospital))]
+        public IHttpActionResult GetHospital(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Hospital hospital = db.Hospitals.Find(id);
             if (hospital == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(hospital);
+
+            return Ok(hospital);
         }
 
-        // GET: Hospitals/Create
-        public ActionResult Create()
+        // PUT: api/Hospitals/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutHospital(int id, Hospital hospital)
         {
-            return View();
-        }
-
-        // POST: Hospitals/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Address,City,State,Zipcode,Phone")] Hospital hospital)
-        {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                db.Hospitals.Add(hospital);
+                return BadRequest(ModelState);
+            }
+
+            if (id != hospital.Id)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(hospital).State = EntityState.Modified;
+
+            try
+            {
                 db.SaveChanges();
-                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!HospitalExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return View(hospital);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // GET: Hospitals/Edit/5
-        public ActionResult Edit(int? id)
+        // POST: api/Hospitals
+        [ResponseType(typeof(Hospital))]
+        public IHttpActionResult PostHospital(Hospital hospital)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest(ModelState);
             }
+
+            db.Hospitals.Add(hospital);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = hospital.Id }, hospital);
+        }
+
+        // DELETE: api/Hospitals/5
+        [ResponseType(typeof(Hospital))]
+        public IHttpActionResult DeleteHospital(int id)
+        {
             Hospital hospital = db.Hospitals.Find(id);
             if (hospital == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
-            return View(hospital);
-        }
 
-        // POST: Hospitals/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Address,City,State,Zipcode,Phone")] Hospital hospital)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(hospital).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(hospital);
-        }
-
-        // GET: Hospitals/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Hospital hospital = db.Hospitals.Find(id);
-            if (hospital == null)
-            {
-                return HttpNotFound();
-            }
-            return View(hospital);
-        }
-
-        // POST: Hospitals/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Hospital hospital = db.Hospitals.Find(id);
             db.Hospitals.Remove(hospital);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Ok(hospital);
         }
 
         protected override void Dispose(bool disposing)
@@ -123,6 +109,11 @@ namespace DigiDou.Web.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private bool HospitalExists(int id)
+        {
+            return db.Hospitals.Count(e => e.Id == id) > 0;
         }
     }
 }

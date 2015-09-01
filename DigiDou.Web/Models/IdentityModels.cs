@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using System.Data.Entity;
 
 namespace DigiDou.Web.Models
 {
@@ -12,6 +13,8 @@ namespace DigiDou.Web.Models
     {
         public virtual Hospital Hospital { get; set; }
         public virtual List<Contraction> Contractions { get; set; }
+        public virtual List<Contact> Contacts { get; set; }
+
          
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
@@ -34,6 +37,12 @@ namespace DigiDou.Web.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<DigiDou.Web.Models.Hospital> Hospitals { get; set; }
+        public DbSet<Hospital> Hospitals { get; set; }
+
+        public DbSet<Contact> Contacts { get; set; }
+
+        public DbSet<Contraction> Contractions { get; set; }
+
+        public DbSet<SMS> Messages { get; set; }
     }
 }

@@ -18,7 +18,5 @@ namespace DigiDou.Web.Models
         public string FullAddress => Address + "," + City + "," + State + " " + Zipcode;
 
         public string Phone { get; set; }
-
-        public DbSet<Hospital> Hospitals { get; set; }
     }
 }

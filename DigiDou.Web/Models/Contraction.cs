@@ -14,6 +14,5 @@ namespace DigiDou.Web.Models
 
         public TimeSpan Length => EndTime - StartTime;
 
-        public DbSet<Contraction> Contractions { get; set; }
     }
 }
