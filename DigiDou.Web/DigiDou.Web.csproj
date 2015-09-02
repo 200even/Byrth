@@ -281,6 +281,10 @@
     <Compile Include="Migrations\201509020057264_IsSent.Designer.cs">
       <DependentUpon>201509020057264_IsSent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509021606440_IdentityUpdates.cs" />
+    <Compile Include="Migrations\201509021606440_IdentityUpdates.Designer.cs">
+      <DependentUpon>201509021606440_IdentityUpdates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -366,6 +370,12 @@
     <Content Include="Views\SMSMvc\Edit.cshtml" />
     <Content Include="Views\SMSMvc\Index.cshtml" />
     <Content Include="Views\SMSMvc\CreateForRecipient.cshtml" />
+    <Content Include="Views\ApplicationUsers\Create.cshtml" />
+    <Content Include="Views\ApplicationUsers\Delete.cshtml" />
+    <Content Include="Views\ApplicationUsers\Details.cshtml" />
+    <Content Include="Views\ApplicationUsers\Edit.cshtml" />
+    <Content Include="Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Views\ContactsMvc\Countdown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -411,6 +421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509020057264_IsSent.resx">
       <DependentUpon>201509020057264_IsSent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509021606440_IdentityUpdates.resx">
+      <DependentUpon>201509021606440_IdentityUpdates.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

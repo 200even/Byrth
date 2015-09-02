@@ -21,7 +21,12 @@ namespace DigiDou.Web.Controllers
             return View(db.Contacts.ToList());
         }
 
-       
+       // GET: DueDateCountdown
+       public ActionResult Countdown()
+        {
+            var countdown = db.ApplicationUsers.FirstOrDefault().DaysTilDue;
+            return View(countdown);
+        }
 
         // GET: ContactsMvc/Details/5
         public ActionResult Details(int? id)

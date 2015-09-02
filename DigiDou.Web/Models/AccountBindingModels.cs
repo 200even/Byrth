@@ -32,6 +32,7 @@ namespace DigiDou.Web.Models
         public string ConfirmPassword { get; set; }
     }
 
+    [JsonObject(Title = "user")]
     public class RegisterBindingModel
     {
         [Required]
@@ -43,6 +44,18 @@ namespace DigiDou.Web.Models
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
+        [Display(Name = "Due Date")]
+        public DateTime DueDate { get; set; }
+
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
