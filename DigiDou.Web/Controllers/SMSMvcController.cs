@@ -53,7 +53,7 @@ namespace DigiDou.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Body")] SMS sMS)
+        public ActionResult Create([Bind(Include = "Id,Body,Recipient")] SMS sMS)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace DigiDou.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Body")] SMS sMS)
+        public ActionResult Edit([Bind(Include = "Id,Body,Recipient")] SMS sMS)
         {
             if (ModelState.IsValid)
             {
@@ -122,7 +122,17 @@ namespace DigiDou.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        //SendText
+        [HttpPost]
+        public ActionResult Send (string number, string body, int id)
+        {
+            SendText(number, body);
+            var message = db.Messages.FirstOrDefault(m => m.Id == id);
+            message.IsSent = true;
+            db.SaveChanges();
+            return Content("Ok");
+        }
+        
+        //SendText method
         public static void SendText(string number, string body)
         {
             string AccountSid = ConfigurationManager.AppSettings["acctSid"];

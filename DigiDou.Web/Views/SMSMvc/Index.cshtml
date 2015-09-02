@@ -12,22 +12,74 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Recipient)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Body)
         </th>
         <th></th>
+        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Body)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Recipient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+            <td>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input data-number="@item.Recipient" data-body="@item.Body" data-id="@item.Id" type="submit" value='@(item.IsSent? "Sent": "Send")' class="send @(item.IsSent? "btn-danger": "btn-primary")" />
+                        </div>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+    }
 
 </table>
+
+@section scripts{
+    <script>
+        $('.send').click(function () {
+            var button = $(this);
+            var number = button.data('number');
+            var body = button.data('body');
+            var id = button.data('id');
+
+            var buttonText = button.prop('value');
+            console.log(buttonText);
+            if (buttonText == "Send") {
+                $.ajax({
+                    method: "POST",
+                    url: "/SMSMvc/send",
+                    data: {
+                        number: number,
+                        body: body,
+                        id: id
+                    }
+                })
+                  .done(function (msg) {
+                      if (msg == "Ok") {
+
+                          button.removeClass("btn-primary");
+                          button.addClass("btn-danger");
+                          button.prop('value', 'Sent');
+                      }
+                  })
+            };
+        });
+
+    </script>}
+

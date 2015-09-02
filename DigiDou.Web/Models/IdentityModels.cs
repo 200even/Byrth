@@ -5,15 +5,22 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System.Data.Entity;
+using System;
+using Humanizer;
 
 namespace DigiDou.Web.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public DateTime DueDate { get; set; }
+
+        public string DaysTilDue => DueDate.Humanize();
+
         public virtual Hospital Hospital { get; set; }
         public virtual List<Contraction> Contractions { get; set; }
         public virtual List<Contact> Contacts { get; set; }
+        public virtual List<SMS> Messages { get; set; }
 
          
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)

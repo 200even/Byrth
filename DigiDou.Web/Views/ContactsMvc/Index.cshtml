@@ -43,6 +43,7 @@
             </td>
             <td>
                 <form action="~/SMSMvc/Create" method="get" target="_blank">
+                    <input type="number" class="hidden" value="@item.Phone" />
                     <input type="submit" class="btn btn-primary" value="Send Text" />
                 </form>
         </tr>

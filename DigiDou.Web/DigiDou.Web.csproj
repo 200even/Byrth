@@ -231,6 +231,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HospitalsController.cs" />
     <Compile Include="Controllers\HospitalsMvcController.cs" />
+    <Compile Include="Controllers\SMSController.cs" />
     <Compile Include="Controllers\SMSMvcController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -271,6 +272,14 @@
     <Compile Include="Migrations\201509012028534_SMSDebug.cs" />
     <Compile Include="Migrations\201509012028534_SMSDebug.Designer.cs">
       <DependentUpon>201509012028534_SMSDebug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509020001121_IdentityDueDate.cs" />
+    <Compile Include="Migrations\201509020001121_IdentityDueDate.Designer.cs">
+      <DependentUpon>201509020001121_IdentityDueDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509020057264_IsSent.cs" />
+    <Compile Include="Migrations\201509020057264_IsSent.Designer.cs">
+      <DependentUpon>201509020057264_IsSent.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -396,6 +405,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509012028534_SMSDebug.resx">
       <DependentUpon>201509012028534_SMSDebug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509020001121_IdentityDueDate.resx">
+      <DependentUpon>201509020001121_IdentityDueDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509020057264_IsSent.resx">
+      <DependentUpon>201509020057264_IsSent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

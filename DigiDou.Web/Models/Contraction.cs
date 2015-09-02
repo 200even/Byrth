@@ -14,5 +14,7 @@ namespace DigiDou.Web.Models
 
         public TimeSpan Length => EndTime - StartTime;
 
+        public virtual ApplicationUser User { get; set; }
+
     }
 }
