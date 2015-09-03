@@ -51,6 +51,9 @@ namespace DigiDou.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                //db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Hospital = hospital;
+                //Temporarily using seeded user for testing
+                db.Users.FirstOrDefault().Hospital = hospital;
                 db.Hospitals.Add(hospital);
                 db.SaveChanges();
                 return RedirectToAction("Index");
