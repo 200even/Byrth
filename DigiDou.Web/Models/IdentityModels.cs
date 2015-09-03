@@ -56,6 +56,5 @@ namespace DigiDou.Web.Models
 
         public DbSet<SMS> Messages { get; set; }
 
-        public System.Data.Entity.DbSet<DigiDou.Web.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

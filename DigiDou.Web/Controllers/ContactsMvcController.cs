@@ -18,14 +18,18 @@ namespace DigiDou.Web.Controllers
         // GET: ContactsMvc
         public ActionResult Index()
         {
-            return View(db.Contacts.ToList());
+            //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            //Temporarily using seeded user for testing
+            var currentUser = db.Users.FirstOrDefault();
+            return View(db.Contacts.Where(x => x.User.Id == currentUser.Id).ToList());
         }
 
        // GET: DueDateCountdown
        public ActionResult Countdown()
         {
-            var countdown = db.ApplicationUsers.FirstOrDefault().DaysTilDue;
-            return View(countdown);
+            var dayCount = db.Users.FirstOrDefault().DaysTilDue;
+            return View((object)dayCount);
+
         }
 
         // GET: ContactsMvc/Details/5
@@ -58,6 +62,10 @@ namespace DigiDou.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+                //Temporarily using seeded user for testing
+                var currentUser = db.Users.FirstOrDefault();
+                contact.User = currentUser;
                 db.Contacts.Add(contact);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -285,6 +285,10 @@
     <Compile Include="Migrations\201509021606440_IdentityUpdates.Designer.cs">
       <DependentUpon>201509021606440_IdentityUpdates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509031509563_AppUserOnClasses.cs" />
+    <Compile Include="Migrations\201509031509563_AppUserOnClasses.Designer.cs">
+      <DependentUpon>201509031509563_AppUserOnClasses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -424,6 +428,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509021606440_IdentityUpdates.resx">
       <DependentUpon>201509021606440_IdentityUpdates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509031509563_AppUserOnClasses.resx">
+      <DependentUpon>201509031509563_AppUserOnClasses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
