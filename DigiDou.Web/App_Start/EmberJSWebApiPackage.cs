@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
 using System.Web.Http;
-using EmberJS.WebAPI;
 
 [assembly: WebActivatorEx.PostApplicationStartMethod(typeof(DigiDou.Web.App_Start.EmberJSWebApiPackage), "PostStart")]
 namespace DigiDou.Web.App_Start {
