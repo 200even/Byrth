@@ -18,9 +18,13 @@ namespace DigiDou.Web.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/Hospitals
-        public IQueryable<Hospital> GetHospitals()
+        public Hospital GetHospitals()
         {
-            return db.Hospitals;
+            //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            //Temporarily using seeded user for testing
+            var currentUser = db.Users.FirstOrDefault();
+            var hospital = currentUser.Hospital;
+            return hospital;
         }
 
         // GET: api/Hospitals/5
@@ -80,6 +84,9 @@ namespace DigiDou.Web.Controllers
                 return BadRequest(ModelState);
             }
 
+            //db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Hospital = hospital;
+            //Temporarily using seeded user for testing
+            db.Users.FirstOrDefault().Hospital = hospital;
             db.Hospitals.Add(hospital);
             db.SaveChanges();
 
