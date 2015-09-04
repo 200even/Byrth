@@ -9,13 +9,11 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
+<table class="table-hover">
+    <tr class="col-md-9">
         <th>
-            @Html.DisplayNameFor(model => model.Recipient)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Body)
         </th>
         <th></th>
         <th></th>
@@ -23,7 +21,7 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr class="col-md-9">
             <td>
                 @Html.DisplayFor(modelItem => item.Recipient)
             </td>

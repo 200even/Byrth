@@ -32,7 +32,10 @@ namespace DigiDou.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SMS sMS = db.Messages.Find(id);
+            //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            //TEST CODE
+            var currentUser = db.Users.FirstOrDefault();
+            SMS sMS = currentUser.Messages.Find(m => m.Id == id);
             if (sMS == null)
             {
                 return HttpNotFound();

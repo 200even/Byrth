@@ -20,11 +20,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Message Manager", "Index", "SMSMvc", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Contraction Timer", "Index", "ContractionsMvc", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Hospital Info", "Index", "HospitalsMvc", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Contacts Manager", "Index", "ContactsMvc", new { area = "" }, null)</li>
+                    <li><a href="@Url.Action("Index", "Home")"><i class="visible-xs-inline glyphicon glyphicon-home"></i> Home</a></li>
+                    <li><a href="@Url.Action("Index", "SMSMVC")"><i class="visible-xs-inline glyphicon glyphicon-envelope"></i> Scheduled SMS</a></li>
+                    <li><a href="@Url.Action("Index", "ContractionsMvc")"><i class="visible-xs-inline glyphicon glyphicon-time"></i> Contraction Timer</a></li>
+                    <li><a href="@Url.Action("Index", "HospitalsMvc")"><i class="visible-xs-inline glyphicon glyphicon-header"></i> Hospital</a></li>
+                    <li><a href="@Url.Action("Index", "ContactsMvc")"><i class="visible-xs-inline glyphicon glyphicon-user"></i> Contacts</a></li>
+
                 </ul>
             </div>
         </div>
