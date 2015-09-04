@@ -12,6 +12,7 @@ using DigiDou.Web.Models;
 
 namespace DigiDou.Web.Controllers
 {
+    //[Authorize]
     public class SMSController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();

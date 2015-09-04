@@ -12,6 +12,7 @@ using DigiDou.Web.Models;
 
 namespace DigiDou.Web.Controllers
 {
+    //[Authorize]
     [RoutePrefix("hospitals")]
     public class HospitalsController : ApiController
     {

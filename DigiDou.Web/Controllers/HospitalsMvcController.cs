@@ -53,8 +53,14 @@ namespace DigiDou.Web.Controllers
             {
                 //db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Hospital = hospital;
                 //Temporarily using seeded user for testing
-                db.Users.FirstOrDefault().Hospital = hospital;
-                db.Hospitals.Add(hospital);
+                if (db.Users.Any(u => u.Hospital == null))
+                {
+                    db.Users.FirstOrDefault(u => u.Hospital == null).Hospital = hospital;
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

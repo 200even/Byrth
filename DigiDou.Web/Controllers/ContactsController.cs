@@ -12,6 +12,7 @@ using DigiDou.Web.Models;
 
 namespace DigiDou.Web.Controllers
 {
+    //[Authorize]
     public class ContactsController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -29,6 +30,9 @@ namespace DigiDou.Web.Controllers
         [ResponseType(typeof(Contact))]
         public IHttpActionResult GetContact(int id)
         {
+            //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            //Contact contact = currentUser.Contacts.FirstOrDefault(c => c.Id == id);
+            //Temporarily allowing all contacts to be searched for testing
             Contact contact = db.Contacts.Find(id);
             if (contact == null)
             {
