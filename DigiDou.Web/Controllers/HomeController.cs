@@ -16,6 +16,7 @@ namespace DigiDou.Web.Controllers
         {
             ViewBag.Title = "Home Page";
             var dayCount = db.Users.FirstOrDefault().DaysTilDue;
+            dayCount = dayCount.Replace("from now", "to go");
             return View((object)dayCount);
         }
     }

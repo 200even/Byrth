@@ -4,15 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="col-md-offset-6" align="center" style="color:antiquewhite">Your Hospitals</h2>
+<h2 class="col-md-offset-4" align="center" style="color:antiquewhite">Your Hospitals</h2>
 
-<p class="col-md-offset-6" align="center">
+<p class="col-md-offset-4" align="center">
     @Html.ActionLink("Create New", "Create")
 </p>
 
     @foreach (var item in Model)
     {
-        <div class="col-md-offset-6 col-md-push-4 panel" align="center">
+        <div class="col-md-offset-6 col-md-4 panel" align="center" style="float:none">
             <h2>
                 @Html.DisplayFor(modelItem => item.Name)
             </h2>
@@ -41,5 +41,4 @@
                 <a href="http://maps.google.com/maps?daddr=@item.FullAddress" class="btn btn-primary">Get Directions</a>
             </div>
         </div>
-        <div class="col-md-2"></div>
     }

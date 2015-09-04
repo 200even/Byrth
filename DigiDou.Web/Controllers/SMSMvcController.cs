@@ -19,7 +19,10 @@ namespace DigiDou.Web.Controllers
         // GET: SMSMvc
         public ActionResult Index()
         {
-            return View(db.Messages.ToList());
+            //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            //TEST CODE
+            var currentUser = db.Users.FirstOrDefault();
+            return View(db.Messages.Where(x => x.User.Id == currentUser.Id).ToList());
         }
 
         // GET: SMSMvc/Details/5
@@ -57,7 +60,10 @@ namespace DigiDou.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Messages.Add(sMS);
+                //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+                //TEST CODE
+                var currentUser = db.Users.FirstOrDefault();
+                currentUser.Messages.Add(sMS);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
