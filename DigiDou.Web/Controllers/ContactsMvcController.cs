@@ -19,7 +19,7 @@ namespace DigiDou.Web.Controllers
         public ActionResult Index()
         {
             //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-            //Temporarily using seeded user for testing
+            //TEST CODE
             var currentUser = db.Users.FirstOrDefault();
             return View(db.Contacts.Where(x => x.User.Id == currentUser.Id).ToList());
         }
@@ -63,7 +63,7 @@ namespace DigiDou.Web.Controllers
             if (ModelState.IsValid)
             {
                 //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-                //Temporarily using seeded user for testing
+                //TEST CODE
                 var currentUser = db.Users.FirstOrDefault();
                 contact.User = currentUser;
                 db.Contacts.Add(contact);

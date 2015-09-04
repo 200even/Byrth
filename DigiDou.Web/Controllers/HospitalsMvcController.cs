@@ -52,7 +52,7 @@ namespace DigiDou.Web.Controllers
             if (ModelState.IsValid)
             {
                 //db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Hospital = hospital;
-                //Temporarily using seeded user for testing
+                //TEST CODE
                 if (db.Users.Any(u => u.Hospital == null))
                 {
                     db.Users.FirstOrDefault(u => u.Hospital == null).Hospital = hospital;

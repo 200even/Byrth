@@ -18,9 +18,13 @@ namespace DigiDou.Web.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/SMS
-        public IQueryable<SMS> GetMessages()
+        public List<SMS> GetMessages()
         {
-            return db.Messages;
+            //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            //TEST CODE
+            var currentUser = db.Users.FirstOrDefault();
+            var messages = currentUser.Messages;
+            return messages;
         }
 
         // GET: api/SMS/5
@@ -80,7 +84,9 @@ namespace DigiDou.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Messages.Add(sMs);
+            //db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Messages.Add(sMs);
+            //TEST CODE
+            db.Users.FirstOrDefault().Messages.Add(sMs);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = sMs.Id }, sMs);

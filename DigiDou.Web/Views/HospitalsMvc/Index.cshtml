@@ -4,66 +4,42 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="col-md-offset-6" align="center" style="color:antiquewhite">Your Hospitals</h2>
 
-<p>
+<p class="col-md-offset-6" align="center">
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Zipcode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>Directions</th>
-    </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
+        <div class="col-md-offset-6 col-md-push-4 panel" align="center">
+            <h2>
                 @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
+            </h2>
+            <p>
                 @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
+            </p>
+            <p>
                 @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
+            </p>
+            <p>
                 @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
+            </p>
+            <p>
                 @Html.DisplayFor(modelItem => item.Zipcode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
+            </p>
+            <p>
+                <a href="tel: @item.Phone">@Html.DisplayFor(modelItem => item.Phone)</a>
+            </p>
+            <h6>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-            <td>
+            </h6>
+            <div>
 
                 <a href="http://maps.google.com/maps?daddr=@item.FullAddress" class="btn btn-primary">Get Directions</a>
-            </td>
-        </tr>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
     }
-
-</table>
-
