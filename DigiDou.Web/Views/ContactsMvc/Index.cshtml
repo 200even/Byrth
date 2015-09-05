@@ -42,10 +42,7 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
             <td>
-                <form action="~/SMSMvc/Create" method="get" target="_blank">
-                    <input type="number" class="hidden" value="@item.Phone" />
-                    <input type="submit" class="btn btn-primary" value="Send Text" />
-                </form>
+                @Html.ActionLink("Send Text", "Create", "SMSMvc", new { recipientId = item.Id }, new { @class="btn btn-primary"})
         </tr>
     }
 

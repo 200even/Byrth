@@ -12,17 +12,41 @@ using System.Configuration;
 
 namespace DigiDou.Web.Controllers
 {
-    public class SMSMvcController : Controller
+    public class BaseController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
 
+        public void Success(string msg)
+        {
+            TempData["success"] = msg;
+        }
+
+
+        public void Error(string msg)
+        {
+            TempData["error"] = msg;
+        }
+        protected ApplicationUser CurrentUser { get; set; }
+        protected ApplicationDbContext db = new ApplicationDbContext();
+
+        protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
+        {
+         //   if (Request.IsAuthenticated)
+            {
+                //CurrentUser= db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+                CurrentUser = db.Users.FirstOrDefault();
+
+            }
+            return base.BeginExecuteCore(callback, state);
+        }
+
+    }
+    public class SMSMvcController : BaseController
+    {
+        
         // GET: SMSMvc
         public ActionResult Index()
         {
-            //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-            //TEST CODE
-            var currentUser = db.Users.FirstOrDefault();
-            return View(db.Messages.Where(x => x.User.Id == currentUser.Id).ToList());
+            return View(db.Messages.Where(x => x.User.Id == CurrentUser.Id).ToList());
         }
 
         // GET: SMSMvc/Details/5
@@ -32,10 +56,7 @@ namespace DigiDou.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-            //TEST CODE
-            var currentUser = db.Users.FirstOrDefault();
-            SMS sMS = currentUser.Messages.Find(m => m.Id == id);
+            SMS sMS = CurrentUser.Messages.Find(m => m.Id == id);
             if (sMS == null)
             {
                 return HttpNotFound();
@@ -44,14 +65,12 @@ namespace DigiDou.Web.Controllers
         }
 
         // GET: SMSMvc/Create
-        public ActionResult Create(string recipient)
+        public ActionResult Create(int? recipientId)
         {
-            if (recipient == null)
-            {
-                return View();
-            }
-            var message = new SMS() { Recipient = recipient };
-            return View(message);
+            var model = new SMSCreateVM();
+            model.MyContacts = new SelectList(CurrentUser.Contacts, "Id", "FullName", recipientId.GetValueOrDefault());
+            
+            return View(model);
         }
 
         // POST: SMSMvc/Create
@@ -59,18 +78,19 @@ namespace DigiDou.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Body,Recipient")] SMS sMS)
+        public ActionResult Create(SMSCreateVM sMS)
         {
             if (ModelState.IsValid)
             {
-                //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-                //TEST CODE
-                var currentUser = db.Users.FirstOrDefault();
-                currentUser.Messages.Add(sMS);
+                SMS newMessage = new SMS { Recipient = db.Contacts.Find(sMS.SelectContactId) , Body = sMS.Body, User = CurrentUser};
+                db.Messages.Add(newMessage);
                 db.SaveChanges();
+                Success($"SMS ready to be sent to {newMessage.Recipient.FullName}");
                 return RedirectToAction("Index");
             }
 
+            sMS.MyContacts = new SelectList(CurrentUser.Contacts, "Id", "FullName", sMS.SelectContactId);
+            db.SaveChanges();
             return View(sMS);
         }
 
@@ -132,7 +152,7 @@ namespace DigiDou.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Send (string number, string body, int id)
+        public ActionResult Send(string number, string body, int id)
         {
             SendText(number, body);
             var message = db.Messages.FirstOrDefault(m => m.Id == id);
@@ -140,7 +160,7 @@ namespace DigiDou.Web.Controllers
             db.SaveChanges();
             return Content("Ok");
         }
-        
+
         //SendText method
         public static void SendText(string number, string body)
         {

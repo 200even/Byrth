@@ -299,6 +299,10 @@
     <Compile Include="Migrations\201509031509563_AppUserOnClasses.Designer.cs">
       <DependentUpon>201509031509563_AppUserOnClasses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509041755120_SMSContact.cs" />
+    <Compile Include="Migrations\201509041755120_SMSContact.Designer.cs">
+      <DependentUpon>201509041755120_SMSContact.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -307,6 +311,7 @@
     <Compile Include="Models\Hospital.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\SMS.cs" />
+    <Compile Include="Models\SMSCreateVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -447,6 +452,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509031509563_AppUserOnClasses.resx">
       <DependentUpon>201509031509563_AppUserOnClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509041755120_SMSContact.resx">
+      <DependentUpon>201509041755120_SMSContact.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
