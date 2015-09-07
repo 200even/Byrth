@@ -201,6 +201,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ContractionsController.cs" />
     <Compile Include="EmberJsonMediaTypeFormatter.cs" />
     <Compile Include="App_Start\EmberJSWebApiPackage.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />

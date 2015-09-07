@@ -12,52 +12,46 @@ using DigiDou.Web.Models;
 
 namespace DigiDou.Web.Controllers
 {
-    //[Authorize]
-    public class SMSController : ApiController
+    public class ContractionsController : ApiController
     {
         private static ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationUser CurrentUser = db.Users.FirstOrDefault();
         //CurrentUser= db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-        
-        // GET: api/SMS
-        public List<SMS> GetMessages()
+
+        // GET: api/Contractions
+        public IQueryable<Contraction> GetContractions()
         {
-            //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-            //TEST CODE
-            var messages = db.Messages
-                                      .Where(x => x.User.Id == CurrentUser.Id && x.Recipient.Phone != null)
-                                      .ToList();
-            return messages;
+            return db.Contractions.Where(x => x.User.Id == CurrentUser.Id);
         }
 
-        // GET: api/SMS/5
-        [ResponseType(typeof(SMS))]
-        public IHttpActionResult GetSMS(int id)
+        // GET: api/Contractions/5
+        [ResponseType(typeof(Contraction))]
+        public IHttpActionResult GetContraction(int id)
         {
-            SMS sMS = db.Messages.Find(id);
-            if (sMS == null)
+            Contraction contraction = CurrentUser.Contractions.Find(c => c.Id == id);
+            if (contraction == null)
             {
                 return NotFound();
             }
 
-            return Ok(sMS);
+            return Ok(contraction);
         }
 
-        // PUT: api/SMS/5
+        // PUT: api/Contractions/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutSMS(int id, SMS sMS)
+        public IHttpActionResult PutContraction(int id, Contraction contraction)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != sMS.Id)
+            if (id != contraction.Id || CurrentUser.Contractions.Any(c => c.Id != id))
             {
                 return BadRequest();
             }
 
-            db.Entry(sMS).State = EntityState.Modified;
+            db.Entry(contraction).State = EntityState.Modified;
 
             try
             {
@@ -65,7 +59,7 @@ namespace DigiDou.Web.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SMSExists(id))
+                if (!ContractionExists(id))
                 {
                     return NotFound();
                 }
@@ -78,37 +72,35 @@ namespace DigiDou.Web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/SMS
-        [ResponseType(typeof(SMS))]
-        public IHttpActionResult PostSMS(SMS sMs)
+        // POST: api/Contractions
+        [ResponseType(typeof(Contraction))]
+        public IHttpActionResult PostContraction(Contraction contraction)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            //db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Messages.Add(sMs);
-            //TEST CODE
-            db.Users.FirstOrDefault().Messages.Add(sMs);
+            CurrentUser.Contractions.Add(contraction);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = sMs.Id }, sMs);
+            return CreatedAtRoute("DefaultApi", new { id = contraction.Id }, contraction);
         }
 
-        // DELETE: api/SMS/5
-        [ResponseType(typeof(SMS))]
-        public IHttpActionResult DeleteSMS(int id)
+        // DELETE: api/Contractions/5
+        [ResponseType(typeof(Contraction))]
+        public IHttpActionResult DeleteContraction(int id)
         {
-            SMS sMS = db.Messages.Find(id);
-            if (sMS == null)
+            Contraction contraction = CurrentUser.Contractions.FirstOrDefault(c => c.Id == id);
+            if (contraction == null)
             {
                 return NotFound();
             }
 
-            db.Messages.Remove(sMS);
+            db.Contractions.Remove(contraction);
             db.SaveChanges();
 
-            return Ok(sMS);
+            return Ok(contraction);
         }
 
         protected override void Dispose(bool disposing)
@@ -120,9 +112,9 @@ namespace DigiDou.Web.Controllers
             base.Dispose(disposing);
         }
 
-        private bool SMSExists(int id)
+        private bool ContractionExists(int id)
         {
-            return db.Messages.Count(e => e.Id == id) > 0;
+            return db.Contractions.Count(e => e.Id == id) > 0;
         }
     }
 }
