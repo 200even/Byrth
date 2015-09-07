@@ -202,6 +202,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContractionsController.cs" />
+    <Compile Include="Controllers\ContractionsMvcController.cs" />
     <Compile Include="EmberJsonMediaTypeFormatter.cs" />
     <Compile Include="App_Start\EmberJSWebApiPackage.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -406,6 +407,11 @@
     <Content Include="Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Views\ApplicationUsers\Index.cshtml" />
     <Content Include="Views\ContactsMvc\Countdown.cshtml" />
+    <Content Include="Views\ContractionsMvc\Create.cshtml" />
+    <Content Include="Views\ContractionsMvc\Delete.cshtml" />
+    <Content Include="Views\ContractionsMvc\Details.cshtml" />
+    <Content Include="Views\ContractionsMvc\Edit.cshtml" />
+    <Content Include="Views\ContractionsMvc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
