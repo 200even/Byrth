@@ -15,15 +15,17 @@ namespace DigiDou.Web.Controllers
     //[Authorize]
     public class SMSController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        private static ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationUser CurrentUser = db.Users.FirstOrDefault();
+        //CurrentUser= db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+        
         // GET: api/SMS
         public List<SMS> GetMessages()
         {
             //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
             //TEST CODE
-            var currentUser = db.Users.FirstOrDefault();
-            var messages = currentUser.Messages;
+            var messages = db.Messages
+                                      .Where(x => x.User.Id == CurrentUser.Id && x.Recipient.Phone != null).ToList();
             return messages;
         }
 

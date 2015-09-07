@@ -200,6 +200,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="EmberJsonMediaTypeFormatter.cs" />
     <Compile Include="App_Start\EmberJSWebApiPackage.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -407,6 +408,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

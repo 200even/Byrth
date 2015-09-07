@@ -12,41 +12,15 @@ using System.Configuration;
 
 namespace DigiDou.Web.Controllers
 {
-    public class BaseController : Controller
-    {
-
-        public void Success(string msg)
-        {
-            TempData["success"] = msg;
-        }
-
-
-        public void Error(string msg)
-        {
-            TempData["error"] = msg;
-        }
-        protected ApplicationUser CurrentUser { get; set; }
-        protected ApplicationDbContext db = new ApplicationDbContext();
-
-        protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
-        {
-         //   if (Request.IsAuthenticated)
-            {
-                //CurrentUser= db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-                CurrentUser = db.Users.FirstOrDefault();
-
-            }
-            return base.BeginExecuteCore(callback, state);
-        }
-
-    }
+    
     public class SMSMvcController : BaseController
     {
         
         // GET: SMSMvc
         public ActionResult Index()
         {
-            return View(db.Messages.Where(x => x.User.Id == CurrentUser.Id).ToList());
+            var messages = db.Messages.Where(x => x.User.Id == CurrentUser.Id && x.Recipient.Phone != null).Include(r => r.Recipient);
+            return View(messages);
         }
 
         // GET: SMSMvc/Details/5

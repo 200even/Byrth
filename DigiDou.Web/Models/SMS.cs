@@ -18,6 +18,7 @@ namespace DigiDou.Web.Models
 
         public bool IsSent { get; set; }
 
+        [JsonIgnore]
         public virtual ApplicationUser User { get; set; }
 
 

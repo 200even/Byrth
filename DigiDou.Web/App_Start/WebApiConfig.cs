@@ -26,5 +26,5 @@ namespace DigiDou.Web
                 defaults: new { id = RouteParameter.Optional }
             );
         }
-    }
+}
 }
