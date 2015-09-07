@@ -306,6 +306,10 @@
     <Compile Include="Migrations\201509041755120_SMSContact.Designer.cs">
       <DependentUpon>201509041755120_SMSContact.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201509072038488_TimeSpan.cs" />
+    <Compile Include="Migrations\201509072038488_TimeSpan.Designer.cs">
+      <DependentUpon>201509072038488_TimeSpan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -355,6 +359,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\labortracker.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -464,6 +469,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509041755120_SMSContact.resx">
       <DependentUpon>201509041755120_SMSContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509072038488_TimeSpan.resx">
+      <DependentUpon>201509072038488_TimeSpan.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

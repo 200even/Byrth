@@ -15,7 +15,14 @@ namespace DigiDou.Web.Controllers
         // GET: ContractionsMvc
         public ActionResult Index()
         {
-            return View(CurrentUser.Contractions.ToList());
+            DateTime endTime = CurrentUser.Contractions.FirstOrDefault().StartTime;
+            foreach (Contraction c in CurrentUser.Contractions)
+            {
+                c.TimeSinceLast = c.StartTime - endTime;
+                endTime = c.EndTime;
+            }
+            var contractions = CurrentUser.Contractions.ToList();
+            return View(contractions);
         }
 
         // GET: ContractionsMvc/Details/5

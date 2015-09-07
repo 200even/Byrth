@@ -17,11 +17,17 @@ namespace DigiDou.Web.Controllers
         private static ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationUser CurrentUser = db.Users.FirstOrDefault();
         //CurrentUser= db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-
         // GET: api/Contractions
-        public IQueryable<Contraction> GetContractions()
+        public List<Contraction> GetContractions()
         {
-            return db.Contractions.Where(x => x.User.Id == CurrentUser.Id);
+            DateTime endTime = CurrentUser.Contractions.FirstOrDefault().StartTime;
+            foreach(Contraction c in CurrentUser.Contractions)
+            {
+                c.TimeSinceLast = c.StartTime - endTime;
+                endTime = c.EndTime;
+            }
+            var contractions = CurrentUser.Contractions.ToList();
+            return contractions;
         }
 
         // GET: api/Contractions/5
