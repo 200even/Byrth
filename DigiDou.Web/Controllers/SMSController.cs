@@ -25,7 +25,7 @@ namespace DigiDou.Web.Controllers
             //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
             //TEST CODE
             var messages = db.Messages
-                                      .Where(x => x.User.Id == CurrentUser.Id && x.Recipient.Phone != null)
+                                      .Where(x => x.User.Id == CurrentUser.Id && x.Recipient.Phone != null).Include(m => m.Recipient)
                                       .ToList();
             return messages;
         }
