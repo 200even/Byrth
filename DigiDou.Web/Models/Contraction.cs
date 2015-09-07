@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace DigiDou.Web.Models
         public TimeSpan Length => EndTime - StartTime;
         public TimeSpan TimeSinceLast { get; set; }
        
+        [JsonIgnore]
         public virtual ApplicationUser User { get; set; }
 
     }
