@@ -7,17 +7,9 @@
 <h2>Details</h2>
 
 <div>
-    <h4>SMS</h4>
+    <h4>SMSDetailsVM</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Recipient)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Recipient)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Body)
         </dt>
@@ -26,9 +18,32 @@
             @Html.DisplayFor(model => model.Body)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSent)
+        </dt>
+
+        <dd>
+            @Model.IsSent
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Recipient.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Recipient.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Recipient.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Recipient.Phone)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

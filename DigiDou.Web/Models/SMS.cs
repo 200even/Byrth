@@ -11,7 +11,7 @@ namespace DigiDou.Web.Models
     public class SMS
     {
         public int Id { get; set; }
-        public Contact Recipient { get; set; }
+        public virtual Contact Recipient { get; set; }
 
         [MaxLength(140)]
         public string Body { get; set; }
