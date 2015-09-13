@@ -86,7 +86,7 @@ namespace DigiDou.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Contacts.Add(contact);
+            db.Users.FirstOrDefault().Contacts.Add(contact);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = contact.Id }, contact);
