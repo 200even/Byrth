@@ -57,7 +57,7 @@ namespace DigiDou.Web.Controllers
             if (ModelState.IsValid)
             {
                 SMS newMessage = new SMS { Recipient = db.Contacts.Find(sMS.SelectContactId) , Body = sMS.Body, User = CurrentUser};
-                db.Messages.Add(newMessage);
+                db.Contacts.FirstOrDefault(m => m.Id == newMessage.Recipient.Id).Messages.Add(newMessage);
                 db.SaveChanges();
                 Success($"SMS ready to be sent to {newMessage.Recipient.FullName}");
                 return RedirectToAction("Index");

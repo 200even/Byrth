@@ -250,65 +250,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508312037422_Initial.cs" />
-    <Compile Include="Migrations\201508312037422_Initial.Designer.cs">
-      <DependentUpon>201508312037422_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508312100149_Hospital.cs" />
-    <Compile Include="Migrations\201508312100149_Hospital.Designer.cs">
-      <DependentUpon>201508312100149_Hospital.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508312144307_FullAddress.cs" />
-    <Compile Include="Migrations\201508312144307_FullAddress.Designer.cs">
-      <DependentUpon>201508312144307_FullAddress.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509011517148_Debug.cs" />
-    <Compile Include="Migrations\201509011517148_Debug.Designer.cs">
-      <DependentUpon>201509011517148_Debug.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509011723023_Contacts.cs" />
-    <Compile Include="Migrations\201509011723023_Contacts.Designer.cs">
-      <DependentUpon>201509011723023_Contacts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509011845363_SMS.cs" />
-    <Compile Include="Migrations\201509011845363_SMS.Designer.cs">
-      <DependentUpon>201509011845363_SMS.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509012016537_smsedits.cs" />
-    <Compile Include="Migrations\201509012016537_smsedits.Designer.cs">
-      <DependentUpon>201509012016537_smsedits.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509012020166_smsedits1.cs" />
-    <Compile Include="Migrations\201509012020166_smsedits1.Designer.cs">
-      <DependentUpon>201509012020166_smsedits1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509012028534_SMSDebug.cs" />
-    <Compile Include="Migrations\201509012028534_SMSDebug.Designer.cs">
-      <DependentUpon>201509012028534_SMSDebug.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509020001121_IdentityDueDate.cs" />
-    <Compile Include="Migrations\201509020001121_IdentityDueDate.Designer.cs">
-      <DependentUpon>201509020001121_IdentityDueDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509020057264_IsSent.cs" />
-    <Compile Include="Migrations\201509020057264_IsSent.Designer.cs">
-      <DependentUpon>201509020057264_IsSent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509021606440_IdentityUpdates.cs" />
-    <Compile Include="Migrations\201509021606440_IdentityUpdates.Designer.cs">
-      <DependentUpon>201509021606440_IdentityUpdates.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509031509563_AppUserOnClasses.cs" />
-    <Compile Include="Migrations\201509031509563_AppUserOnClasses.Designer.cs">
-      <DependentUpon>201509031509563_AppUserOnClasses.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509041755120_SMSContact.cs" />
-    <Compile Include="Migrations\201509041755120_SMSContact.Designer.cs">
-      <DependentUpon>201509041755120_SMSContact.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509072038488_TimeSpan.cs" />
-    <Compile Include="Migrations\201509072038488_TimeSpan.Designer.cs">
-      <DependentUpon>201509072038488_TimeSpan.cs</DependentUpon>
+    <Compile Include="Migrations\201509131910493_Rebuild.cs" />
+    <Compile Include="Migrations\201509131910493_Rebuild.Designer.cs">
+      <DependentUpon>201509131910493_Rebuild.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -428,50 +372,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508312037422_Initial.resx">
-      <DependentUpon>201508312037422_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508312100149_Hospital.resx">
-      <DependentUpon>201508312100149_Hospital.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508312144307_FullAddress.resx">
-      <DependentUpon>201508312144307_FullAddress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509011517148_Debug.resx">
-      <DependentUpon>201509011517148_Debug.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509011723023_Contacts.resx">
-      <DependentUpon>201509011723023_Contacts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509011845363_SMS.resx">
-      <DependentUpon>201509011845363_SMS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509012016537_smsedits.resx">
-      <DependentUpon>201509012016537_smsedits.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509012020166_smsedits1.resx">
-      <DependentUpon>201509012020166_smsedits1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509012028534_SMSDebug.resx">
-      <DependentUpon>201509012028534_SMSDebug.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509020001121_IdentityDueDate.resx">
-      <DependentUpon>201509020001121_IdentityDueDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509020057264_IsSent.resx">
-      <DependentUpon>201509020057264_IsSent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509021606440_IdentityUpdates.resx">
-      <DependentUpon>201509021606440_IdentityUpdates.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509031509563_AppUserOnClasses.resx">
-      <DependentUpon>201509031509563_AppUserOnClasses.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509041755120_SMSContact.resx">
-      <DependentUpon>201509041755120_SMSContact.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509072038488_TimeSpan.resx">
-      <DependentUpon>201509072038488_TimeSpan.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509131910493_Rebuild.resx">
+      <DependentUpon>201509131910493_Rebuild.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

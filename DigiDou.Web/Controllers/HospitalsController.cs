@@ -24,7 +24,7 @@ namespace DigiDou.Web.Controllers
             //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
             //TEST CODE
             var currentUser = db.Users.FirstOrDefault();
-            var hospital = currentUser.Hospital;
+            var hospital = currentUser.Hospital.FirstOrDefault();
             return hospital;
         }
 
@@ -87,9 +87,9 @@ namespace DigiDou.Web.Controllers
 
             //db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Hospital = hospital;
             //TEST CODE
-            if (db.Users.Any(u => u.Hospital == null))
+            if (db.Users.Any(u => u.Hospital.FirstOrDefault() == null))
             {
-                db.Users.FirstOrDefault(u => u.Hospital == null).Hospital = hospital;
+                hospital = db.Users.FirstOrDefault(u => u.Hospital.FirstOrDefault() == null).Hospital.FirstOrDefault();
             }
             else
             {

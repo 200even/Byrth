@@ -21,7 +21,7 @@ namespace DigiDou.Web.Models
 
         public string DaysTilDue => DueDate.Humanize();
 
-        public virtual Hospital Hospital { get; set; }
+        public virtual List<Hospital> Hospital { get; set; }
         public virtual List<Contraction> Contractions { get; set; }
         public virtual List<Contact> Contacts { get; set; }
         public virtual List<SMS> Messages { get; set; }

@@ -7,13 +7,13 @@ namespace DigiDou.Web.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class IdentityDueDate : IMigrationMetadata
+    public sealed partial class Rebuild : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(IdentityDueDate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Rebuild));
         
         string IMigrationMetadata.Id
         {
-            get { return "201509020001121_IdentityDueDate"; }
+            get { return "201509131910493_Rebuild"; }
         }
         
         string IMigrationMetadata.Source

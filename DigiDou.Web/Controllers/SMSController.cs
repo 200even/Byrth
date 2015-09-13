@@ -79,19 +79,20 @@ namespace DigiDou.Web.Controllers
 
         // POST: api/SMS
         [ResponseType(typeof(SMS))]
-        public IHttpActionResult PostSMS(SMS sMs)
+        public IHttpActionResult PostSMS(SMS sMS)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            //db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Messages.Add(sMs);
-            //TEST CODE
-            db.Users.FirstOrDefault().Messages.Add(sMs);
+            ApplicationUser currentUser = db.Users.FirstOrDefault();
+
+            SMS newMessage = new SMS { Recipient = db.Contacts.Find(sMS.Recipient.Id), Body = sMS.Body, User = currentUser };
+            db.Contacts.FirstOrDefault(m => m.Id == newMessage.Recipient.Id).Messages.Add(newMessage);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = sMs.Id }, sMs);
+            return CreatedAtRoute("DefaultApi", new { id = newMessage.Id }, sMS);
         }
 
         // DELETE: api/SMS/5
