@@ -13,18 +13,14 @@ using DigiDou.Web.Models;
 namespace DigiDou.Web.Controllers
 {
     //[Authorize]
-    public class SMSController : ApiController
+    public class SMSController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        //CurrentUser= db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
 
         // GET: api/SMS
         public List<SMS> GetMessages()
         {
-            //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-            ApplicationUser currentUser = db.Users.FirstOrDefault();
             var messages = db.Messages
-                                          .Where(x => x.User.Id == currentUser.Id && x.Recipient.Phone != null).Include(m => m.Recipient)
+                                          .Where(x => x.User.Id == CurrentUser.Id && x.Recipient.Phone != null).Include(m => m.Recipient)
                                           .ToList();
             return messages;
         }
@@ -51,7 +47,7 @@ namespace DigiDou.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != sMS.Id)
+            if (id != sMS.Id || CurrentUser.Messages.Any(m => m.Id != id))
             {
                 return BadRequest();
             }
@@ -86,9 +82,7 @@ namespace DigiDou.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            ApplicationUser currentUser = db.Users.FirstOrDefault();
-
-            SMS newMessage = new SMS { Recipient = db.Contacts.Find(sMS.Recipient.Id), Body = sMS.Body, User = currentUser };
+            SMS newMessage = new SMS { Recipient = db.Contacts.Find(sMS.Recipient.Id), Body = sMS.Body, User = CurrentUser };
             db.Contacts.FirstOrDefault(m => m.Id == newMessage.Recipient.Id).Messages.Add(newMessage);
             db.SaveChanges();
 
@@ -99,7 +93,7 @@ namespace DigiDou.Web.Controllers
         [ResponseType(typeof(SMS))]
         public IHttpActionResult DeleteSMS(int id)
         {
-            SMS sMS = db.Messages.Find(id);
+            SMS sMS = CurrentUser.Messages.FirstOrDefault(m => m.Id == id);
             if (sMS == null)
             {
                 return NotFound();

@@ -45,7 +45,7 @@ namespace DigiDou.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != hospital.Id)
+            if (id != CurrentUser.Hospital.Id)
             {
                 return BadRequest();
             }
@@ -97,16 +97,18 @@ namespace DigiDou.Web.Controllers
         [ResponseType(typeof(Hospital))]
         public IHttpActionResult DeleteHospital(int id)
         {
-            Hospital hospital = db.Hospitals.Find(id);
-            if (hospital == null)
+            Hospital hospital = CurrentUser.Hospital;
+            if (CurrentUser.Hospital.Id == id)
+            {
+                db.Hospitals.Remove(hospital);
+                db.SaveChanges();
+                return Ok(hospital);
+            }
+            else
             {
                 return NotFound();
             }
 
-            db.Hospitals.Remove(hospital);
-            db.SaveChanges();
-
-            return Ok(hospital);
         }
 
         protected override void Dispose(bool disposing)
