@@ -20,8 +20,8 @@ namespace DigiDou.Web.Controllers
         public List<Contraction> GetContractions()
         {
             ApplicationUser currentUser = db.Users.FirstOrDefault();
-            DateTime endTime = currentUser.Contractions.FirstOrDefault().StartTime;
-            foreach(Contraction c in currentUser.Contractions)
+            DateTime endTime = currentUser.Contractions.OrderBy(c => c.StartTime).FirstOrDefault().StartTime;
+            foreach(Contraction c in currentUser.Contractions.OrderBy(c => c.StartTime))
             {
                 c.TimeSinceLast = c.StartTime - endTime;
                 endTime = c.EndTime;

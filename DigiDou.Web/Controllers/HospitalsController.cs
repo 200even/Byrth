@@ -45,12 +45,18 @@ namespace DigiDou.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != CurrentUser.Hospital.Id)
+            if (id != hospital.Id || id != CurrentUser.Hospital.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(hospital).State = EntityState.Modified;
+
+            CurrentUser.Hospital.Address = hospital.Address;
+            CurrentUser.Hospital.City = hospital.City;
+            CurrentUser.Hospital.Name = hospital.Name;
+            CurrentUser.Hospital.Phone = hospital.Phone;
+            CurrentUser.Hospital.State = hospital.State;
+            CurrentUser.Hospital.Zipcode = hospital.Zipcode;
 
             try
             {

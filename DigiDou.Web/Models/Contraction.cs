@@ -14,7 +14,11 @@ namespace DigiDou.Web.Models
         public DateTime EndTime { get; set; }
 
         public TimeSpan Length => EndTime - StartTime;
+
+        [JsonIgnore]
         public TimeSpan TimeSinceLast { get; set; }
+
+        public int TimeSinceLastMS => (int)TimeSinceLast.TotalMilliseconds;
        
         [JsonIgnore]
         public virtual ApplicationUser User { get; set; }
