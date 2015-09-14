@@ -11,14 +11,20 @@ using DigiDou.Web.Models;
 
 namespace DigiDou.Web.Controllers
 {
-    public class HospitalsMvcController : Controller
+    public class HospitalsMvcController : MVCBaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Hospitals
         public ActionResult Index()
         {
-            return View(db.Hospitals.ToList());
+            if(CurrentUser.Hospital != null)
+            {
+                return View(CurrentUser.Hospital);
+            }
+            else
+            {
+                return RedirectToAction("Create");
+            }
         }
 
         // GET: Hospitals/Details/5
@@ -53,9 +59,9 @@ namespace DigiDou.Web.Controllers
             {
                 //db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Hospital = hospital;
                 //TEST CODE
-                if (db.Users.Any(u => u.Hospital.FirstOrDefault() == null))
+                if (CurrentUser.Hospital == null)
                 {
-                    hospital = db.Users.FirstOrDefault(u => u.Hospital.FirstOrDefault() == null).Hospital.FirstOrDefault();
+                    CurrentUser.Hospital = hospital;
                 }
                 else
                 {

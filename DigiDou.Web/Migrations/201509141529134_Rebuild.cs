@@ -56,9 +56,12 @@ namespace DigiDou.Web.Migrations
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
                         UserName = c.String(nullable: false, maxLength: 256),
+                        Hospital_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
+                .ForeignKey("dbo.Hospitals", t => t.Hospital_Id)
+                .Index(t => t.UserName, unique: true, name: "UserNameIndex")
+                .Index(t => t.Hospital_Id);
             
             CreateTable(
                 "dbo.AspNetUserClaims",
@@ -98,11 +101,8 @@ namespace DigiDou.Web.Migrations
                         State = c.String(),
                         Zipcode = c.Int(nullable: false),
                         Phone = c.String(),
-                        ApplicationUser_Id = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUser_Id)
-                .Index(t => t.ApplicationUser_Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.AspNetUserLogins",
@@ -147,7 +147,7 @@ namespace DigiDou.Web.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.SMS", "User_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Hospitals", "ApplicationUser_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUsers", "Hospital_Id", "dbo.Hospitals");
             DropForeignKey("dbo.Contractions", "User_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.Contacts", "User_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
@@ -156,9 +156,9 @@ namespace DigiDou.Web.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
-            DropIndex("dbo.Hospitals", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.Contractions", new[] { "User_Id" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
+            DropIndex("dbo.AspNetUsers", new[] { "Hospital_Id" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.SMS", new[] { "User_Id" });
             DropIndex("dbo.SMS", new[] { "Recipient_Id" });

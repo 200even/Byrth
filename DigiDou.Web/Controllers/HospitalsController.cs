@@ -14,17 +14,12 @@ namespace DigiDou.Web.Controllers
 {
     //[Authorize]
     [RoutePrefix("hospitals")]
-    public class HospitalsController : ApiController
+    public class HospitalsController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET: api/Hospitals
         public Hospital GetHospitals()
         {
-            //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-            //TEST CODE
-            var currentUser = db.Users.FirstOrDefault();
-            var hospital = currentUser.Hospital.FirstOrDefault();
+            var hospital = CurrentUser.Hospital;
             return hospital;
         }
 
@@ -85,15 +80,13 @@ namespace DigiDou.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            //db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Hospital = hospital;
-            //TEST CODE
-            if (db.Users.Any(u => u.Hospital.FirstOrDefault() == null))
+            if (CurrentUser.Hospital == null)
             {
-                hospital = db.Users.FirstOrDefault(u => u.Hospital.FirstOrDefault() == null).Hospital.FirstOrDefault();
+                CurrentUser.Hospital = hospital;
             }
             else
             {
-                return BadRequest("All users have hospital");
+                return BadRequest("User already has a hospital");
             }
             db.SaveChanges();
 

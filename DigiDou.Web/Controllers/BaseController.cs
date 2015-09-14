@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace DigiDou.Web.Controllers
 {
-    public class BaseController : Controller
+    public class MVCBaseController : Controller
     {
 
         public void Success(string msg)
@@ -35,5 +35,16 @@ namespace DigiDou.Web.Controllers
             return base.BeginExecuteCore(callback, state);
         }
 
+    }
+
+    public class BaseController : ApiController
+    {
+        protected ApplicationUser CurrentUser {
+            get
+            {
+                return db.Users.FirstOrDefault();
+            }
+        }
+        protected ApplicationDbContext db = new ApplicationDbContext();
     }
 }

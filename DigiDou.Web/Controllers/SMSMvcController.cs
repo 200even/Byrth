@@ -13,7 +13,7 @@ using System.Configuration;
 namespace DigiDou.Web.Controllers
 {
     
-    public class SMSMvcController : BaseController
+    public class SMSMvcController : MVCBaseController
     {
         
         // GET: SMSMvc

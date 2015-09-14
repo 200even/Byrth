@@ -10,19 +10,27 @@ using DigiDou.Web.Models;
 
 namespace DigiDou.Web.Controllers
 {
-    public class ContractionsMvcController : BaseController
+    public class ContractionsMvcController : MVCBaseController
     {
         // GET: ContractionsMvc
         public ActionResult Index()
         {
-            DateTime endTime = CurrentUser.Contractions.FirstOrDefault().StartTime;
-            foreach (Contraction c in CurrentUser.Contractions)
+            if (CurrentUser.Contractions.Count() != 0)
             {
-                c.TimeSinceLast = c.StartTime - endTime;
-                endTime = c.EndTime;
+                DateTime endTime = CurrentUser.Contractions.FirstOrDefault().StartTime;
+                foreach (Contraction c in CurrentUser.Contractions)
+                {
+                    c.TimeSinceLast = c.StartTime - endTime;
+                    endTime = c.EndTime;
+                }
+                var contractions = CurrentUser.Contractions.ToList();
+                return View(contractions);
+
             }
-            var contractions = CurrentUser.Contractions.ToList();
-            return View(contractions);
+            else
+            {
+                return RedirectToAction("Create");
+            }
         }
 
         // GET: ContractionsMvc/Details/5

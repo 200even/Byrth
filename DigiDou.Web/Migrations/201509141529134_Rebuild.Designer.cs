@@ -13,7 +13,7 @@ namespace DigiDou.Web.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201509131910493_Rebuild"; }
+            get { return "201509141529134_Rebuild"; }
         }
         
         string IMigrationMetadata.Source
