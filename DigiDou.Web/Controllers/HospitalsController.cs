@@ -17,9 +17,10 @@ namespace DigiDou.Web.Controllers
     public class HospitalsController : BaseController
     {
         // GET: api/Hospitals
-        public Hospital GetHospitals()
+        public List<Hospital> GetHospitals()
         {
-            var hospital = CurrentUser.Hospital;
+            List<Hospital> hospital = new List<Hospital>();
+            hospital.Add(CurrentUser.Hospital);
             return hospital;
         }
 
@@ -28,7 +29,7 @@ namespace DigiDou.Web.Controllers
         public IHttpActionResult GetHospital(int id)
         {
             Hospital hospital = db.Hospitals.Find(id);
-            if (hospital == null)
+            if (hospital == null || hospital != CurrentUser.Hospital)
             {
                 return NotFound();
             }
