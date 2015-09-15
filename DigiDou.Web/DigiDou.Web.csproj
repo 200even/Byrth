@@ -333,11 +333,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Hospitals\Create.cshtml" />
-    <Content Include="Views\Hospitals\Delete.cshtml" />
-    <Content Include="Views\Hospitals\Details.cshtml" />
-    <Content Include="Views\Hospitals\Edit.cshtml" />
-    <Content Include="Views\Hospitals\Index.cshtml" />
     <Content Include="Views\HospitalsMvc\Create.cshtml" />
     <Content Include="Views\HospitalsMvc\Index.cshtml" />
     <Content Include="Views\ContactsMvc\Create.cshtml" />

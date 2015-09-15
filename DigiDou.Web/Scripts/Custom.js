@@ -2,7 +2,7 @@
     var s;
     return {
         settings: {
-            stop: 0,
+            stop: 1,
             sw: document.querySelectorAll(".stopwatch")[0],
             results: document.querySelectorAll(".results")[0],
             mills: 0,

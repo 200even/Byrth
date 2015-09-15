@@ -6,12 +6,12 @@
 
 <h2>Contraction Timer</h2>
 <div>
-    <div class="col-md-offset-4 col-md-8"><div class="stopwatch"></div></div>
-    <div class="controls col-md-offset-4">
-        <a href="#" class="button btn btn-success" onClick="Stopwatch.start();">Start</a>
-        <a href="#" class="button btn btn-primary" onClick="Stopwatch.lap();">Lap</a>
-        <a href="#" class="button btn btn-danger" onClick="Stopwatch.stop();">Stop</a>
-        <a href="#" class="button btn btn-default" onClick="Stopwatch.restart();">Restart</a>
+    <div class="col-md-5 col-md-offset-4"><button class="stopwatch" onClick="Stopwatch.start();">00:00:00</button></div>
+    <div class="col-md-offset-4">
+        <a href="#" id="start" class="button btn-lg btn-success" onClick="Stopwatch.start();">Start</a>
+        <a href="#" id="lap" class="button btn-lg btn-primary" onClick="Stopwatch.lap();">Lap</a>
+        <a href="#" id="stop" class="button btn-lg btn-danger" onClick="Stopwatch.stop();">Stop</a>
+        <a href="#" id="restart" class="button btn-lg btn-default" onClick="Stopwatch.restart();">Restart</a>
     </div>
     
     <table class="table panel results"></table>
@@ -44,4 +44,24 @@
 @section scripts
 {
      <script src="~/Scripts/Custom.js"></script>
+    <script>
+        $('.stopwatch').click(function () {
+            var stopwatch = $(this);
+            var clickText = stopwatch.attr('onClick');
+            console.log(clickText);
+            //$.ajax({
+            //    method: "POST",
+            //    url: "/ContractionsMvc/StartTime",
+            //})
+            switch(clickText){
+                case "Stopwatch.start();":
+                    stopwatch.attr('onClick', 'Stopwatch.stop();');
+                    break;
+                case "Stopwatch.stop();":
+                    stopwatch.attr('onClick', 'Stopwatch.start();');
+                    break;
+            }
+        });
+
+    </script>
 }

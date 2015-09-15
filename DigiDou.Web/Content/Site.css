@@ -80,6 +80,27 @@ textarea {
     max-width: 280px;
 }
 
-.stopwatch{
-    font-size: 80px;
+.stopwatch {
+  font-size: 80px;
+  height: 80px;
+  padding-bottom:100px;
+}
+@media (min-width: 768px) {
+  .stopwatch {
+    line-height:100px;
+  }
+}
+@media (min-width: 992px) {
+  .stopwatch {
+  }
+}
+@media (min-width: 1200px) {
+  .stopwatch {
+  }
+}
+.stopwatch-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
