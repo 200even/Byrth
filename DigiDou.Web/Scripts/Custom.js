@@ -21,6 +21,7 @@
             s.times = ["00:00:00"],
             s.results.innerHTML = s.clearButton;
         },
+
         lap: function () {
             if (s.i === 1) {
                 s.results.innerHTML = s.clearButton;
