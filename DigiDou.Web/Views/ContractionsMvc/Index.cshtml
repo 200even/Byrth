@@ -4,11 +4,19 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>Contraction Timer</h2>
+<div>
+    <div class="col-md-offset-4 col-md-8"><div class="stopwatch"></div></div>
+    <div class="controls col-md-offset-4 col-md-8">
+        <a href="#" class="button btn btn-success" onClick="Stopwatch.start();">Start</a>
+        <a href="#" class="button btn btn-primary" onClick="Stopwatch.lap();">Lap</a>
+        <a href="#" class="button btn btn-danger" onClick="Stopwatch.stop();">Stop</a>
+        <a href="#" class="button btn btn-default" onClick="Stopwatch.restart();">Restart</a>
+    </div>
+    
+    <table class="table panel results"></table>
+</div>
+<!--Results Table
 <table class="table panel">
     <tr>
         <th>
@@ -31,4 +39,9 @@
     </tr>
 }
 
-</table>
+</table>-->
+
+@section scripts
+{
+     <script src="~/Scripts/Custom.js"></script>
+}
