@@ -3,52 +3,56 @@
     padding-bottom: 20px;
     opacity: 0.8;
     font-family: Georgia;
-    font-weight:300;
+    font-weight: 300;
+    background-image: url('../Img/expectant-mother.jpg');
+    background-size: cover;
 }
 
 .countdown {
-  padding: 30px;
-  margin-bottom: 30px;
-  font-size: 21px;
-  font-weight: 200;
-  line-height: 2.1428571435;
-  color: inherit;
+    padding: 30px;
+    margin-bottom: 30px;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 2.1428571435;
+    color: inherit;
 }
 
-.countdown h1 {
-  line-height: 1;
-  color: inherit;
-}
+    .countdown h1 {
+        line-height: 1;
+        color: inherit;
+    }
 
-.countdown p {
-  line-height: 1.4;
-}
+    .countdown p {
+        line-height: 1.4;
+    }
 
 .container .countdown {
-  border-radius: 20px;
+    border-radius: 20px;
 }
 
 @media screen and (min-width: 768px) {
-  .countdown {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  .container .countdown {
-    padding-right: 60px;
-    padding-left: 0px;
-  }
-  .countdown h1 {
-    font-size: 63px;
-  }
+    .countdown {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .container .countdown {
+        padding-right: 60px;
+        padding-left: 0px;
+    }
+
+    .countdown h1 {
+        font-size: 63px;
+    }
 }
 
-.panel{
+.panel {
     border-radius: 20px;
     padding-bottom: 5px;
     opacity: .6;
 }
 
-.tablerow{
+.tablerow {
     margin-bottom: 20px;
     background-color: #fff;
     border: 1px solid transparent;
@@ -59,13 +63,12 @@
     opacity: .6;
 }
 
-footer{
+footer {
     text-align: right;
     color: antiquewhite;
 }
 
-.table{
-
+.table {
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -80,27 +83,56 @@ textarea {
     max-width: 280px;
 }
 
+
 .stopwatch {
-  font-size: 80px;
-  height: 80px;
-  padding-bottom:100px;
+    font-size: 60px;
+    text-align: left;
+    width:300px;
+    padding-left: 1%;
+    padding-bottom: 8%;
+    padding-top: 8%;
+    padding-right: 2%;
+    border-radius: 100%;
+    border: 10px solid;
+    overflow: hidden;
+    background-color: darkgray;
+    opacity: .5;
 }
-@media (min-width: 768px) {
-  .stopwatch {
-    line-height:100px;
-  }
+
+    .stopwatch:hover {
+        background: #FF8080;
+    }
+
+@keyframes hvr-pulse {
+    25% {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+    75% {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    }
 }
-@media (min-width: 992px) {
-  .stopwatch {
-  }
+
+.hvr-pulse {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0,0,0,0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
 }
-@media (min-width: 1200px) {
-  .stopwatch {
-  }
-}
-.stopwatch-fluid {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
+
+    .hvr-pulse:active, .hvr-pulse:hover {
+        -webkit-animation-name: hvr-pulse;
+        animation-name: hvr-pulse;
+        -webkit-animation-duration: 4s;
+        animation-duration: 4s;
+        -webkit-animation-timing-function: linear;
+        animation-timing-function: linear;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+    }

@@ -48,7 +48,7 @@ namespace DigiDou.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != contraction.Id || CurrentUser.Contractions.Any(c => c.Id != id))
+            if (id != contraction.Id || !CurrentUser.Contractions.Any(c => c.Id == id))
             {
                 return BadRequest();
             }
@@ -73,6 +73,8 @@ namespace DigiDou.Web.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+
+
 
         // POST: api/Contractions
         [ResponseType(typeof(Contraction))]

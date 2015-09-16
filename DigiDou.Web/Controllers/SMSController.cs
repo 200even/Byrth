@@ -19,9 +19,8 @@ namespace DigiDou.Web.Controllers
         // GET: api/SMS
         public List<SMS> GetMessages()
         {
-            var messages = db.Messages
-                                          .Where(x => x.User.Id == CurrentUser.Id && x.Recipient.Phone != null).Include(m => m.Recipient)
-                                          .ToList();
+            var messages = db.Messages.Where(x => x.User.Id == CurrentUser.Id && x.Recipient.Phone != null)
+                                      .Include(m => m.Recipient).ToList();
             return messages;
         }
 
