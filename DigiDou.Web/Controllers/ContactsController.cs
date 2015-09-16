@@ -13,25 +13,18 @@ using DigiDou.Web.Models;
 namespace DigiDou.Web.Controllers
 {
     //[Authorize]
-    public class ContactsController : ApiController
+    public class ContactsController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET: api/Contacts
         public IQueryable<Contact> GetContacts()
         {
-            //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-            //Temporarily using seeded user for testing
-            var currentUser = db.Users.FirstOrDefault();
-            return db.Contacts.Where(u => u.User.Id == currentUser.Id);
+            return db.Contacts.Where(u => u.User.Id == CurrentUser.Id);
         }
 
         // GET: api/Contacts/5
         [ResponseType(typeof(Contact))]
         public IHttpActionResult GetContact(int id)
         {
-            //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-            //Contact contact = currentUser.Contacts.FirstOrDefault(c => c.Id == id);
             //Temporarily allowing all contacts to be searched for testing
             Contact contact = db.Contacts.Find(id);
             if (contact == null)
@@ -86,7 +79,7 @@ namespace DigiDou.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Users.FirstOrDefault().Contacts.Add(contact);
+            CurrentUser.Contacts.Add(contact);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = contact.Id }, contact);
@@ -96,13 +89,13 @@ namespace DigiDou.Web.Controllers
         [ResponseType(typeof(Contact))]
         public IHttpActionResult DeleteContact(int id)
         {
-            Contact contact = db.Contacts.Find(id);
+            Contact contact = CurrentUser.Contacts.Find(c => c.Id == id);
             if (contact == null)
             {
                 return NotFound();
             }
 
-            db.Contacts.Remove(contact);
+            CurrentUser.Contacts.Remove(contact);
             db.SaveChanges();
 
             return Ok(contact);

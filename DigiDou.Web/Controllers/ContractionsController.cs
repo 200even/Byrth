@@ -12,21 +12,17 @@ using DigiDou.Web.Models;
 
 namespace DigiDou.Web.Controllers
 {
-    public class ContractionsController : ApiController
+    public class ContractionsController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        //CurrentUser= db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-        // GET: api/Contractions
         public List<Contraction> GetContractions()
         {
-            ApplicationUser currentUser = db.Users.FirstOrDefault();
-            DateTime endTime = currentUser.Contractions.OrderBy(c => c.StartTime).FirstOrDefault().StartTime;
-            foreach(Contraction c in currentUser.Contractions.OrderBy(c => c.StartTime))
+            DateTime endTime = CurrentUser.Contractions.OrderBy(c => c.StartTime).FirstOrDefault().StartTime;
+            foreach(Contraction c in CurrentUser.Contractions.OrderBy(c => c.StartTime))
             {
                 c.TimeSinceLast = c.StartTime - endTime;
                 endTime = c.EndTime;
             }
-            var contractions = currentUser.Contractions.ToList();
+            var contractions = CurrentUser.Contractions.ToList();
             return contractions;
         }
 
@@ -34,8 +30,7 @@ namespace DigiDou.Web.Controllers
         [ResponseType(typeof(Contraction))]
         public IHttpActionResult GetContraction(int id)
         {
-            ApplicationUser currentUser = db.Users.FirstOrDefault();
-            Contraction contraction = currentUser.Contractions.Find(c => c.Id == id);
+            Contraction contraction = CurrentUser.Contractions.Find(c => c.Id == id);
             if (contraction == null)
             {
                 return NotFound();
@@ -48,13 +43,12 @@ namespace DigiDou.Web.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutContraction(int id, Contraction contraction)
         {
-            ApplicationUser currentUser = db.Users.FirstOrDefault();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != contraction.Id || currentUser.Contractions.Any(c => c.Id != id))
+            if (id != contraction.Id || CurrentUser.Contractions.Any(c => c.Id != id))
             {
                 return BadRequest();
             }
@@ -84,13 +78,12 @@ namespace DigiDou.Web.Controllers
         [ResponseType(typeof(Contraction))]
         public IHttpActionResult PostContraction(Contraction contraction)
         {
-            ApplicationUser currentUser = db.Users.FirstOrDefault();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            currentUser.Contractions.Add(contraction);
+            CurrentUser.Contractions.Add(contraction);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = contraction.Id }, contraction);
@@ -100,8 +93,7 @@ namespace DigiDou.Web.Controllers
         [ResponseType(typeof(Contraction))]
         public IHttpActionResult DeleteContraction(int id)
         {
-            ApplicationUser currentUser = db.Users.FirstOrDefault();
-            Contraction contraction = currentUser.Contractions.FirstOrDefault(c => c.Id == id);
+            Contraction contraction = CurrentUser.Contractions.FirstOrDefault(c => c.Id == id);
             if (contraction == null)
             {
                 return NotFound();
