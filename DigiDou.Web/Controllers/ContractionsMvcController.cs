@@ -129,6 +129,18 @@ namespace DigiDou.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        public void StartTime()
+        {
+            CurrentUser.Contractions.Add(new Contraction { StartTime = DateTime.Now, EndTime = DateTime.Now.AddMinutes(5) });
+            db.SaveChanges();
+        }
+
+        public void EndTime()
+        {
+            CurrentUser.Contractions.OrderBy(c => c.StartTime).LastOrDefault().EndTime = DateTime.Now;
+            db.SaveChanges();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

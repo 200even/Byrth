@@ -8,15 +8,11 @@
 <div>
     <div class="col-md-5 col-md-offset-4"><button class="stopwatch" value="stopped">00:00:00</button></div>
     <div class="col-md-offset-4">
-        @*<a href="#" class="button btn-lg btn-success" onClick="Stopwatch.start();">Start</a>
-        <a href="#" class="button btn-lg btn-primary" onClick="Stopwatch.lap();">Lap</a>
-        <a href="#" class="button btn-lg btn-danger" onClick="Stopwatch.stop();">Stop</a>
-        <a href="#" class="button btn-lg btn-default" onClick="Stopwatch.restart();">Restart</a>*@
     </div>
     
-    <table class="table panel results"></table>
+    <table class="table panel results hidden"></table>
 </div>
-<!--Results Table
+<h1>Results Table</h1>
 <table class="table panel">
     <tr>
         <th>
@@ -28,9 +24,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Length)
+            @Html.DisplayFor(modelItem => item.Length.Minutes) Minutes @Html.DisplayFor(modelItem => item.Length.Seconds) Seconds
         </td>
-        <td>@Html.DisplayFor(modelItem => item.TimeSinceLast)</td>
+        <td>@Html.DisplayFor(modelItem => item.TimeSinceLast.Hours) Hours @Html.DisplayFor(modelItem => item.TimeSinceLast.Minutes) Minutes @Html.DisplayFor(modelItem => item.TimeSinceLast.Seconds) Seconds</td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
@@ -39,7 +35,7 @@
     </tr>
 }
 
-</table>-->
+</table>
 
 @section scripts
 {
