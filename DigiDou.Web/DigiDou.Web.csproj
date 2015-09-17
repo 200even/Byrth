@@ -202,7 +202,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContractionsController.cs" />
-    <Compile Include="Controllers\ContractionsMvcController.cs" />
     <Compile Include="EmberJsonMediaTypeFormatter.cs" />
     <Compile Include="App_Start\EmberJSWebApiPackage.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -240,29 +239,13 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
-    <Compile Include="Controllers\ContactsMvcController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HospitalsController.cs" />
-    <Compile Include="Controllers\HospitalsMvcController.cs" />
     <Compile Include="Controllers\SMSController.cs" />
-    <Compile Include="Controllers\SMSMvcController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201509141529134_Rebuild.cs" />
-    <Compile Include="Migrations\201509141529134_Rebuild.Designer.cs">
-      <DependentUpon>201509141529134_Rebuild.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Contact.cs" />
-    <Compile Include="Models\Contraction.cs" />
-    <Compile Include="Models\Hospital.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\SMS.cs" />
-    <Compile Include="Models\SMSCreateVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -278,7 +261,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Img\expectant-mother.jpg" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -330,37 +312,11 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\HospitalsMvc\Create.cshtml" />
-    <Content Include="Views\HospitalsMvc\Index.cshtml" />
-    <Content Include="Views\ContactsMvc\Create.cshtml" />
-    <Content Include="Views\ContactsMvc\Delete.cshtml" />
-    <Content Include="Views\ContactsMvc\Details.cshtml" />
-    <Content Include="Views\ContactsMvc\Edit.cshtml" />
-    <Content Include="Views\ContactsMvc\Index.cshtml" />
-    <Content Include="Views\SMSMvc\Create.cshtml" />
-    <Content Include="Views\SMSMvc\Delete.cshtml" />
-    <Content Include="Views\SMSMvc\Details.cshtml" />
-    <Content Include="Views\SMSMvc\Edit.cshtml" />
-    <Content Include="Views\SMSMvc\Index.cshtml" />
-    <Content Include="Views\SMSMvc\CreateForRecipient.cshtml" />
-    <Content Include="Views\ApplicationUsers\Create.cshtml" />
-    <Content Include="Views\ApplicationUsers\Delete.cshtml" />
-    <Content Include="Views\ApplicationUsers\Details.cshtml" />
-    <Content Include="Views\ApplicationUsers\Edit.cshtml" />
-    <Content Include="Views\ApplicationUsers\Index.cshtml" />
-    <Content Include="Views\ContactsMvc\Countdown.cshtml" />
-    <Content Include="Views\ContractionsMvc\Create.cshtml" />
-    <Content Include="Views\ContractionsMvc\Delete.cshtml" />
-    <Content Include="Views\ContractionsMvc\Details.cshtml" />
-    <Content Include="Views\ContractionsMvc\Edit.cshtml" />
-    <Content Include="Views\ContractionsMvc\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -368,9 +324,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509141529134_Rebuild.resx">
-      <DependentUpon>201509141529134_Rebuild.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\Byrth.Core\Byrth.Core.csproj">
+      <Project>{5DEDA2DB-E80F-4D9B-BAF4-0513F0FAFA60}</Project>
+      <Name>Byrth.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

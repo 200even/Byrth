@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Byrth.Core;
 using DigiDou.Web.Models;
 
 namespace DigiDou.Web.Controllers
