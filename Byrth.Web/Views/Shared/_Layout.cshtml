@@ -25,6 +25,7 @@
                     <li><a href="@Url.Action("Index", "Contacts")"><i class="visible-xs-inline glyphicon glyphicon-user"></i> Contacts</a></li>
                     <li><a href="@Url.Action("Index", "Contractions")"><i class="visible-xs-inline glyphicon glyphicon-time"></i> Contraction Timer</a></li>
                     <li><a href="@Url.Action("Index", "Hospitals")"><i class="visible-xs-inline glyphicon glyphicon-header"></i> Hospital</a></li>
+                    <li class="visible-xs-inline"><a href="#" class="tgl" value="Day"><i class="glyphicon glyphicon-lamp"></i> Lights On/Off</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -55,10 +56,9 @@
 
         @RenderBody()
         <footer>
-            <div class="col-md-10">
-                <input class="tgl tgl-flat" id="cb4" type="checkbox" value="Day"><label class="tgl-btn" for="cb4"></label>
+            <div class="col-md-offset-10">
+                &copy; @DateTime.Now.Year - Byrth
             </div>
-            <div class="col-md-2">&copy; @DateTime.Now.Year - Byrth</div>
         </footer>
     </div>
 
@@ -70,13 +70,13 @@
             var toggle = $(this);
             if (toggle.prop('value') == 'Day') {
                 toggle.prop('value', 'Night');
-                    body.className = "darkSwitch";
+                body.className = "darkSwitch";
             }
             else {
                 toggle.prop('value', 'Day');
-                    body.className = "lightSwitch";
+                body.className = "lightSwitch";
             }
-           
+
         });
     </script>
 </body>

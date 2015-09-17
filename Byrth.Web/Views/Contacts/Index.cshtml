@@ -4,10 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Contacts</h2>
+<h2 class="col-md-offset-4">Contacts</h2>
 
 
-<div class="panel col-md-8">
+<br />
+
+<div class="panel col-md-offset-4 col-md-8">
+
     <table class="col-md-12">
         <tr>
             <th>
@@ -39,12 +42,15 @@
                     @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
                     @Html.ActionLink("Delete", "Delete", new {id = item.Id})
                 </td>
-                
             </tr>
         }
 
     </table>
-    <p>
+
+</div>
+<div class="col-md-offset-4">
+    <button class="btn btn-lg">
         @Html.ActionLink("Add New", "Create")
-    </p>
+    </button>
+    <br/><br/>
 </div>
