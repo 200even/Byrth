@@ -42,7 +42,7 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
             <td>
-                @Html.ActionLink("Send Text", "Create", "SMSMvc", new { recipientId = item.Id }, new { @class="btn btn-primary"})
+                @Html.ActionLink("Send Text", "Create", "SMS", new { recipientId = item.Id }, new { @class="btn btn-primary"})
         </tr>
     }
 

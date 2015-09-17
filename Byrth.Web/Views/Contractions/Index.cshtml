@@ -50,7 +50,7 @@
                 timer.prop('value', 'started');
                 $.ajax({
                     method: "POST",
-                    url: "/ContractionsMvc/StartTime",
+                    url: "/Contractions/StartTime",
                 })
             }
             else {
@@ -59,7 +59,7 @@
                 timer.prop('value', 'stopped');
                 $.ajax({
                     method: "POST",
-                    url: "/ContractionsMvc/EndTime",
+                    url: "/Contractions/EndTime",
                 })
             }
         });
