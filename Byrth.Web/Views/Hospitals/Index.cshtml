@@ -3,41 +3,32 @@
 @{
     ViewBag.Title = "Index";
 }
-<br />
+<br/>
+<h2 align="center">Your Hospital</h2>
+
 <div class="panel col-md-offset-4 col-md-4" style="float:none">
-    <div align="center">
-        <h2>Your Hospital</h2>
-
-        <h2>
+    <address align="center">
+        
+        <strong>
             @Html.DisplayFor(model => model.Name)
-        </h2>
-
-        <p>
+        </strong><br/>
             @Html.DisplayFor(model => model.Address)
-        </p>
-
-        <p>
+        <br>
             @Html.DisplayFor(model => model.City)
-        </p>
-
-        <p>
+        <br>
             @Html.DisplayFor(model => model.State)
-        </p>
-
-        <p>
+        <br>
             @Html.DisplayFor(model => model.Zipcode)
-        </p>
-
-        <p>
-            <a href="tel: @Model.Phone">@Html.DisplayFor(model => model.Phone)</a>
-        </p>
-        <p>
+        <br>
+        <abbr title="Phone">P:</abbr> <a href="tel: @Model.Phone">@Html.DisplayFor(model => model.Phone)</a>
+        <br>
+        <strong>
             @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
-        </p>
+        </strong>
         <div>
 
             <a href="http://maps.google.com/maps?daddr=@Model.FullAddress" class="btn btn-primary">Get Directions</a>
         </div>
-    </div>
+    </address>
 
 </div>

@@ -1,4 +1,5 @@
-﻿var Stopwatch = (function () {
+﻿
+var Stopwatch = (function () {
     var s;
     return {
         settings: {
