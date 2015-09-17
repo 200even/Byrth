@@ -13,7 +13,7 @@ using Byrth.Web.Models;
 
 namespace Byrth.Web.Controllers
 {
-    
+    [Authorize]
     public class SMSController : BaseController
     {
         

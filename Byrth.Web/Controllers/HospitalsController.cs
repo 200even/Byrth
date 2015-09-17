@@ -11,9 +11,9 @@ using Byrth.Core;
 
 namespace Byrth.Web.Controllers
 {
+    [Authorize]
     public class HospitalsController : BaseController
     {
-
         // GET: Hospitals
         public ActionResult Index()
         {
@@ -34,7 +34,7 @@ namespace Byrth.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hospital hospital = db.Hospitals.Find(id);
+            Hospital hospital = CurrentUser.Hospital;
             if (hospital == null)
             {
                 return HttpNotFound();
@@ -57,8 +57,6 @@ namespace Byrth.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Hospital = hospital;
-                //TEST CODE
                 if (CurrentUser.Hospital == null)
                 {
                     CurrentUser.Hospital = hospital;
@@ -81,7 +79,7 @@ namespace Byrth.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hospital hospital = db.Hospitals.Find(id);
+            Hospital hospital = CurrentUser.Hospital;
             if (hospital == null)
             {
                 return HttpNotFound();
@@ -112,7 +110,7 @@ namespace Byrth.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hospital hospital = db.Hospitals.Find(id);
+            Hospital hospital = CurrentUser.Hospital;
             if (hospital == null)
             {
                 return HttpNotFound();
@@ -125,7 +123,7 @@ namespace Byrth.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Hospital hospital = db.Hospitals.Find(id);
+            Hospital hospital = CurrentUser.Hospital;
             db.Hospitals.Remove(hospital);
             db.SaveChanges();
             return RedirectToAction("Index");

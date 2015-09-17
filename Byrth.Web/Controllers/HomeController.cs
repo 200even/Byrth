@@ -10,10 +10,24 @@ namespace Byrth.Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-            var dayCount = CurrentUser.DaysTilDue;
-            dayCount = dayCount.Replace("from now", "to go");
-            return View((object)dayCount);
+            if (CurrentUser != null)
+            {
+                ViewBag.Title = "Home Page";
+                var dayCount = CurrentUser.DaysTilDue;
+                dayCount = dayCount.Replace("from now", "to go");
+                return View((object) dayCount);
+            }
+            else
+            {
+                return RedirectToAction("login", "Account");
+            }
+
+        }
+
+        [Authorize]
+        public ActionResult CompleteProfile()
+        {
+            return View();
         }
     }
 }

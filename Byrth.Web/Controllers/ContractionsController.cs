@@ -11,30 +11,28 @@ using Byrth.Web.Controllers;
 
 namespace Byrth.Web.Controllers
 {
+    [Authorize]
     public class ContractionsController : BaseController
     {
-        // GET: ContractionsMvc
+        // GET: Contractions
         public ActionResult Index()
         {
-            if (CurrentUser.Contractions.Count() != 0)
+            DateTime endTime = DateTime.Now.AddDays(-1);
+
+            if (CurrentUser.Contractions.OrderBy(c => c.StartTime).FirstOrDefault().StartTime != null)
             {
-                DateTime endTime = CurrentUser.Contractions.FirstOrDefault().StartTime;
-                foreach (Contraction c in CurrentUser.Contractions)
+                endTime = CurrentUser.Contractions.OrderBy(c => c.StartTime).FirstOrDefault().StartTime;
+            }
+            foreach (Contraction c in CurrentUser.Contractions)
                 {
                     c.TimeSinceLast = c.StartTime - endTime;
                     endTime = c.EndTime;
                 }
                 var contractions = CurrentUser.Contractions.ToList();
                 return View(contractions);
-
-            }
-            else
-            {
-                return RedirectToAction("Create");
-            }
         }
 
-        // GET: ContractionsMvc/Details/5
+        // GET: Contractions/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -49,13 +47,13 @@ namespace Byrth.Web.Controllers
             return View(contraction);
         }
 
-        // GET: ContractionsMvc/Create
+        // GET: Contractions/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ContractionsMvc/Create
+        // POST: Contractions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -72,7 +70,7 @@ namespace Byrth.Web.Controllers
             return View(contraction);
         }
 
-        // GET: ContractionsMvc/Edit/5
+        // GET: Contractions/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null || CurrentUser.Contractions.Any(c => c.Id != id))
@@ -87,7 +85,7 @@ namespace Byrth.Web.Controllers
             return View(contraction);
         }
 
-        // POST: ContractionsMvc/Edit/5
+        // POST: Contractions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -103,7 +101,7 @@ namespace Byrth.Web.Controllers
             return View(contraction);
         }
 
-        // GET: ContractionsMvc/Delete/5
+        // GET: Contractions/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -118,7 +116,7 @@ namespace Byrth.Web.Controllers
             return View(contraction);
         }
 
-        // POST: ContractionsMvc/Delete/5
+        // POST: Contractions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
