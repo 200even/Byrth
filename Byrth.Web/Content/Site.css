@@ -137,3 +137,7 @@ textarea {
         -webkit-animation-iteration-count: infinite;
         animation-iteration-count: infinite;
     }
+
+.table > tbody + tbody {
+    border-top: none;
+}

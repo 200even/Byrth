@@ -19,7 +19,7 @@ namespace Byrth.Web.Controllers
         {
             DateTime endTime = DateTime.Now.AddDays(-1);
 
-            if (CurrentUser.Contractions.OrderBy(c => c.StartTime).FirstOrDefault().StartTime != null)
+            if (CurrentUser.Contractions.OrderBy(c => c.StartTime).FirstOrDefault() != null)
             {
                 endTime = CurrentUser.Contractions.OrderBy(c => c.StartTime).FirstOrDefault().StartTime;
             }
@@ -73,7 +73,7 @@ namespace Byrth.Web.Controllers
         // GET: Contractions/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null || CurrentUser.Contractions.Any(c => c.Id != id))
+            if (id == null || CurrentUser.Contractions.All(c => c.Id != id))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }

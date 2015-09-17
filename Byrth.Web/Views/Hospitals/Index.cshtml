@@ -3,68 +3,41 @@
 @{
     ViewBag.Title = "Index";
 }
+<br />
+<div class="panel col-md-offset-4 col-md-4" style="float:none">
+    <div align="center">
+        <h2>Your Hospital</h2>
 
-<h2>Index</h2>
-
-<div>
-    <h4>Hospital</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
+        <h2>
             @Html.DisplayFor(model => model.Name)
-        </dd>
+        </h2>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Address)
-        </dd>
+        </p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.City)
-        </dd>
+        </p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
-
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.State)
-        </dd>
+        </p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Zipcode)
-        </dt>
-
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Zipcode)
-        </dd>
+        </p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
+        <p>
+            <a href="tel: @Model.Phone">@Html.DisplayFor(model => model.Phone)</a>
+        </p>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+        </p>
+        <div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
+            <a href="http://maps.google.com/maps?daddr=@Model.FullAddress" class="btn btn-primary">Get Directions</a>
+        </div>
+    </div>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
-<div>
-
-    <a href="http://maps.google.com/maps?daddr=@Model.FullAddress" class="btn btn-primary">Get Directions</a>
 </div>

@@ -1,43 +1,45 @@
-﻿@model IEnumerable<Byrth.Core.Contraction>
+﻿@using Humanizer
+@model IEnumerable<Byrth.Core.Contraction>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Contraction Timer</h2>
+<h2 align="center">Contraction Timer</h2>
 <div>
     <div align="center"><button class="stopwatch hvr-pulse" value="stopped">00:00:00</button></div>
     <div class="col-md-offset-4">
     </div>
     
-    <table class="table panel results hidden"></table>
+    <table class="table results hidden"></table>
 </div>
 <div align="center">
     <h1>Results Table</h1>
-    <table class="table panel">
-        <tr>
-            <th>
-                Contraction Duration
-            </th>
-            <th>Time between measured contractions</th>
-            <th></th>
-        </tr>
-        @foreach (var item in Model)
-        {
+    <div class="panel col-md-5" style="float:none">
+        <table>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Length.Minutes) Minutes @Html.DisplayFor(modelItem => item.Length.Seconds) Seconds
-                </td>
-                <td>@Html.DisplayFor(modelItem => item.TimeSinceLast.Hours) Hours @Html.DisplayFor(modelItem => item.TimeSinceLast.Minutes) Minutes @Html.DisplayFor(modelItem => item.TimeSinceLast.Seconds) Seconds</td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                <th>
+                    Contraction Duration
+                </th>
+                <th>Time Between Contractions</th>
+                <th></th>
             </tr>
-        }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LengthHuman)
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.TimeSinceLastHuman)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
 
-    </table>
+        </table>
+    </div>
 </div>
 @section scripts
 {

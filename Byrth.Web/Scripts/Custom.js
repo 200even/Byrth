@@ -14,7 +14,7 @@
         },
         init: function () {
             s = this.settings;
-            setInterval(this.timer, 1);
+            setInterval(this.timer, 9);
         },
         clear: function () {
             s.i = 1,
