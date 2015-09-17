@@ -181,7 +181,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HospitalsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MVCBaseController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\SMSController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -277,6 +277,9 @@
     <Content Include="Views\Contacts\Details.cshtml" />
     <Content Include="Views\Contacts\Edit.cshtml" />
     <Content Include="Views\Contacts\Index.cshtml" />
+    <Content Include="Views\Hospitals\Details.cshtml" />
+    <Content Include="Views\Hospitals\Edit.cshtml" />
+    <Content Include="Views\Hospitals\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

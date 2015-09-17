@@ -12,31 +12,27 @@ using Twilio;
 
 namespace Byrth.Web.Controllers
 {
-    public class ContactsController : Controller
+    [Authorize]
+    public class ContactsController : BaseController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
-        // GET: ContactsMvc
+        // GET: Contacts
         public ActionResult Index()
         {
-            //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-            //TEST CODE
-            var currentUser = db.Users.FirstOrDefault();
-            return View(db.Contacts.Where(x => x.User.Id == currentUser.Id).ToList());
+            return View(db.Contacts.Where(x => x.User.Id == CurrentUser.Id).ToList());
         }
 
        // GET: DueDateCountdown
        public ActionResult Countdown()
         {
-            var dayCount = db.Users.FirstOrDefault().DaysTilDue;
+            var dayCount = CurrentUser.DaysTilDue;
             return View((object)dayCount);
 
         }
 
-        // GET: ContactsMvc/Details/5
+        // GET: Contacts/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (id == null || CurrentUser.Contacts.Any(c => c.Id != id))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -48,13 +44,13 @@ namespace Byrth.Web.Controllers
             return View(contact);
         }
 
-        // GET: ContactsMvc/Create
+        // GET: Contacts/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ContactsMvc/Create
+        // POST: Contacts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -63,10 +59,7 @@ namespace Byrth.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var currentUser = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-                //TEST CODE
-                var currentUser = db.Users.FirstOrDefault();
-                contact.User = currentUser;
+                contact.User = CurrentUser;
                 db.Contacts.Add(contact);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -75,10 +68,10 @@ namespace Byrth.Web.Controllers
             return View(contact);
         }
 
-        // GET: ContactsMvc/Edit/5
+        // GET: Contacts/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (id == null || CurrentUser.Contacts.Any(c => c.Id != id))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -90,7 +83,7 @@ namespace Byrth.Web.Controllers
             return View(contact);
         }
 
-        // POST: ContactsMvc/Edit/5
+        // POST: Contacts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -106,7 +99,7 @@ namespace Byrth.Web.Controllers
             return View(contact);
         }
 
-        // GET: ContactsMvc/Delete/5
+        // GET: Contacts/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -121,7 +114,7 @@ namespace Byrth.Web.Controllers
             return View(contact);
         }
 
-        // POST: ContactsMvc/Delete/5
+        // POST: Contacts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
