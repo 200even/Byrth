@@ -32,7 +32,7 @@ namespace Byrth.Web.Controllers
         // GET: Contacts/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null || CurrentUser.Contacts.Any(c => c.Id != id))
+            if (id == null || !CurrentUser.Contacts.Any(c => c.Id == id))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -71,7 +71,7 @@ namespace Byrth.Web.Controllers
         // GET: Contacts/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null || CurrentUser.Contacts.Any(c => c.Id != id))
+            if (id == null || !CurrentUser.Contacts.Any(c => c.Id == id))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }

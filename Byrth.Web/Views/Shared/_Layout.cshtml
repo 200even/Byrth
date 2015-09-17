@@ -21,11 +21,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="@Url.Action("Index", "Home")"><i class="visible-xs-inline glyphicon glyphicon-home"></i> Home</a></li>
-                    <li><a href="@Url.Action("Index", "SMS")"><i class="visible-xs-inline glyphicon glyphicon-envelope"></i> Scheduled SMS</a></li>
+                    <li><a href="@Url.Action("Index", "SMS")"><i class="visible-xs-inline glyphicon glyphicon-envelope"></i> Messaging </a></li>
+                    <li><a href="@Url.Action("Index", "Contacts")"><i class="visible-xs-inline glyphicon glyphicon-user"></i> Contacts</a></li>
                     <li><a href="@Url.Action("Index", "Contractions")"><i class="visible-xs-inline glyphicon glyphicon-time"></i> Contraction Timer</a></li>
                     <li><a href="@Url.Action("Index", "Hospitals")"><i class="visible-xs-inline glyphicon glyphicon-header"></i> Hospital</a></li>
-                    <li><a href="@Url.Action("Index", "Contacts")"><i class="visible-xs-inline glyphicon glyphicon-user"></i> Contacts</a></li>
-
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
