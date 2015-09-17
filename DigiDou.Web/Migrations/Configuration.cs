@@ -27,6 +27,12 @@ namespace DigiDou.Web.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            context.Contacts.AddOrUpdate(
+                c => c.FullName,
+               new Contact { FirstName = "Scott", LastName = "Ferguson", Phone = "9014869117"}
+            );
+
+            context.SaveChanges();
         }
 
 

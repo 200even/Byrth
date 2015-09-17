@@ -46,7 +46,7 @@
             s.mills = 0,
             s.secs = 0,
             s.mins = 0;
-            this.start();
+            this.stop();
         },
         start: function () {
             s.stop = 0;
